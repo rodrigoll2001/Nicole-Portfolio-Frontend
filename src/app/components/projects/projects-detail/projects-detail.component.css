@@ -1,0 +1,50 @@
+h2 {
+  font-weight: bold;
+  color: #333;
+}
+
+.card {
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+.card img {
+  object-fit: cover;
+  height: 250px;
+}
+
+.badge {
+  font-size: 1rem;
+}
+
+.custom-badge {
+  background-color: #ffccd9 !important;
+  color: #333 !important;
+  font-size: 1rem;
+  border-radius: 12px;
+}
+
+.card .ratio {
+  height: 100%;
+}
+
+.card .ratio iframe {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: 0;
+  background: transparent; /* tira a barriga branca */
+}
+
+.modal-content {
+  border: none;
+  box-shadow: none;
+  background: transparent;
+}
+
+

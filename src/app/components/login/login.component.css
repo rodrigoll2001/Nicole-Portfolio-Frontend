@@ -1,0 +1,55 @@
+/* Container que centraliza tudo */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Caixa do login */
+.login-box {
+  background: #ffccd9;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  text-align: center;
+}
+
+/* Título */
+.login-title {
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Inputs */
+.login-box input {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 30px;
+  outline: none;
+  font-size: 1rem;
+  text-align: center;
+}
+
+/* Botão */
+.login-box button {
+  width: 100%;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 30px;
+  background: #e75480; /* rosa mais forte */
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.login-box button:hover {
+  background: #d14d72;
+}

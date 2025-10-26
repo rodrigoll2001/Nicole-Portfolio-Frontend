@@ -1,0 +1,52 @@
+<div class="container mt-5">
+  <!-- Título -->
+  <h2 class="text-center mb-4">{{ project?.title }}</h2>
+
+  <!-- Grid de mídias -->
+  <div class="justify-content-center row g-3">
+  <div class="col-md-4" *ngFor="let media of project?.medias">
+    <div class="card h-100 shadow-sm">
+      <!-- Imagem -->
+      <img *ngIf="media.type === 'IMAGEM'"
+           [src]="media.url | safeUrl"
+           class="card-img-top rounded"
+           alt="Imagem do projeto"
+           (click)="openImage(media.url)"
+           style="cursor: pointer;">
+
+      <!-- Vídeo -->
+      <div *ngIf="media.type === 'VIDEO'" class="ratio ratio-16x9">
+        <iframe [src]="media.url | safeUrl"
+                title="YouTube video"
+                allowfullscreen
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Descrição -->
+  <div class="text-center mt-5">
+    <h4>Descrição do Projeto</h4>
+    <p class="lead">{{ project?.description }}</p>
+  </div>
+
+ <!-- Categoria -->
+<div class="text-center mt-4">
+  <h5>Categoria:</h5>
+  <span class="badge custom-badge px-3 py-2">{{ project?.categoryName }}</span>
+</div>
+
+<!-- Modal para visualizar imagem -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <img [src]="selectedImage" class="img-fluid rounded" alt="Imagem ampliada">
+      </div>
+    </div>
+  </div>
+</div>
+

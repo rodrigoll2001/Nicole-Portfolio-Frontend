@@ -1,12 +1,23 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [CommonModule, RouterModule],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrls: ['./app.css']
 })
 export class App {
-  protected readonly title = signal('nicole-portfolio-frontend');
+  constructor(public authService: AuthService) {} 
+  // <- deixa como public pra usar direto no template
+
+  title = signal('nicole-portfolio-frontend');
+  currentYear = new Date().getFullYear();
+
+  logout(): void {
+    this.authService.logout();
+  }
 }

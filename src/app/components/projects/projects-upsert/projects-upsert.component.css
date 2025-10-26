@@ -1,0 +1,27 @@
+.container {
+  max-width: 600px;
+}
+
+.card {
+  border-radius: 12px;
+}
+
+.card-header {
+  font-size: 1.25rem;
+  font-weight: bold;
+  background-color: #ffccd9;;
+}
+
+button {
+  min-width: 120px;
+}
+
+h2{
+  font-family: 'Playfair Display', serif;
+  color: #a6004d;
+}
+
+h3{
+  font-family: 'Playfair Display', serif;
+  color: #a6004d;
+}

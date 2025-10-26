@@ -1,0 +1,102 @@
+<div class="container-fluid my-4 p-0">
+
+   <!-- HOME -->
+  <section class="home-section text-center py-5">
+    <h2 class="fw-bold">Nicole Olavarrieta</h2>
+    <p class="text-center fs-5">
+      Animadora e ilustradora <strong>2D/3D</strong> apaixonada pela arte e pela animação.
+    </p>
+  </section>
+
+  <!-- SOBRE MIM -->
+  <section class="about-section py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">Sobre Mim</h2>
+      <p class="text-center fs-5">
+        Olá! Sou <strong>Nicole Olavarrieta</strong>, animadora e ilustradora 2D e 3D apaixonada pela arte e pela criação de mundos. <br><br>
+
+        Desenho desde muito jovem e, mesmo sem experiência profissional ainda, evoluo rápido e aprendo com entusiasmo a cada novo desafio. <br><br>
+
+        Atualmente trabalho com <strong>Procreate</strong>, <strong>Photoshop</strong> (nível básico), <strong>Blender 2D e 3D</strong> (nível iniciante) e <strong>Premiere</strong> (nível básico). Tenho dedicado meu tempo a aprimorar minhas habilidades, e ainda há muito que quero aprender e conquistar. <br><br>
+
+        Meu gosto artístico é bastante diverso — adoro o estilo gótico e expressivo de <strong>Tim Burton</strong>, mas também me inspiro em universos coloridos, cheios de <strong>fantasia, magia, ação e romance</strong>. Acredito que cada projeto é uma oportunidade de explorar um novo lado da criatividade. <br><br>
+
+        A minha maior motivação é <strong>seguir os meus sonhos</strong>. Desde criança, a arte faz parte de quem eu sou — primeiro através da música, depois do desenho, e hoje da animação. Tenho um olhar artístico apurado e a certeza de que nasci para criar. <br><br>
+
+        Acredito que esse tipo de talento não deve ser desperdiçado. Tenho confiança de que posso fazer algo grande, tocar pessoas e <strong>deixar minha marca no mundo através da arte.</strong>
+      </p>
+    </div>
+  </section>
+
+
+  <div class="projects-subtitle text-center mb-4">
+    <h2>Meus Projetos</h2>
+  </div>
+
+ <!-- Barra de busca estilizada -->
+  <div class="search-bar">
+    <div class="input-group">
+      <input type="text" class="search-input" [(ngModel)]="searchTitle" placeholder="Buscar projeto">
+      <button class="search-btn" (click)="loadProjects(searchTitle)">
+        <i class="bi bi-search"></i> Buscar
+      </button>
+    </div>
+  </div>
+
+
+
+  <!-- Grid de projetos -->
+  <div class="row" *ngIf="projects && projects.length > 0; else noProjects">
+    <div class="col-md-4 mb-4" *ngFor="let project of projects">
+      <div class="card project-card h-100 shadow-sm">
+        <div class="card-img-wrapper">
+          <img *ngIf="project.medias" [src]="project.medias[0].url" class="card-img-top" alt="{{ project.title }}">
+          <div class="overlay">
+            <div class="overlay-buttons d-flex gap-2">
+              <button *ngIf="authService.isLoggedIn()" 
+                      class="btn btn-danger btn-sm" 
+                      (click)="deleteProject(project.id)">
+                Deletar
+              </button>
+
+              <a class="btn btn-info btn-sm" 
+                [routerLink]="['/projectDetail', project.id]">
+                Saber mais...
+              </a>
+
+              <a *ngIf="authService.isLoggedIn()" 
+                class="btn btn-warning btn-sm" 
+                [routerLink]="['/projectUpsert', project.id]">
+                Editar Projeto
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{ project.title }}</h5>
+          <p class="card-text text-truncate"
+            data-bs-toggle="tooltip"
+            data-bs-placement="top"
+            title="{{ project.description }}">
+            {{ project.description }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <section class="contact-section text-center my-5">
+      <h2>Contactos</h2>
+      <a href="https://www.instagram.com/olavarrieta.art" target="_blank" class="instagram-link">
+        <i class="bi bi-instagram"></i>
+      </a>
+    </section>
+  </div>
+
+  <!-- Template alternativo quando não houver projetos -->
+  <ng-template #noProjects>
+    <div class="text-center my-5">
+      <p class="fs-4 text-muted">Nenhum projeto encontrado</p>
+    </div>
+  </ng-template>
+
+</div>
