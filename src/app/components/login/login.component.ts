@@ -1,30 +1,41 @@
 import { Component } from '@angular/core';
-import { UsersService, Users, LoginRequest } from '../../services/users.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  imports: [FormsModule]
+  standalone: true,
+  imports: [FormsModule, CommonModule]
 })
 export class LoginComponent {
   username = '';
   password = '';
-  user?: Users;
+  loading = false;
+  errorMessage = '';
 
   constructor(
-    private usersService: UsersService,
     private router: Router,
     private authService: AuthService
   ) {}
 
   login(): void {
+    if (this.loading) return;
+    this.loading = true;
+    this.errorMessage = '';
+
     this.authService.login(this.username, this.password).subscribe({
-      next: () => this.router.navigate(['/']),
-      error: err => alert('Credenciais inválidas!')
+      next: () => {
+        this.loading = false;
+        this.router.navigate(['/']);
+      },
+      error: () => {
+        this.loading = false;
+        this.errorMessage = 'Credenciais inválidas!';
+      }
     });
   }
 }
